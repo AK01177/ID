@@ -559,100 +559,97 @@
     }
 
     function downloadCard() {
-      const card = document.getElementById("idCard");
-      const formSection = document.querySelector('.form-section');
-      
-      // Hide form section during capture
-      formSection.style.visibility = 'hidden';
-      
-      // Wait for all images to load before capturing
-      const images = card.querySelectorAll('img');
-      let loadedImages = 0;
-      const totalImages = images.length;
-      
-      if (totalImages === 0) {
-        captureCard();
-        return;
-      }
-      
-      // Check if images are already loaded
-      images.forEach((img, index) => {
-        if (img.complete && img.naturalHeight !== 0) {
-          loadedImages++;
-        } else {
-          img.onload = () => {
-            loadedImages++;
-            if (loadedImages === totalImages) {
-              setTimeout(captureCard, 200);
-            }
-          };
-          img.onerror = () => {
-            console.warn(`Image ${index} failed to load, continuing anyway...`);
-            loadedImages++;
-            if (loadedImages === totalImages) {
-              setTimeout(captureCard, 200);
-            }
-          };
-        }
-      });
-      
-      if (loadedImages === totalImages) {
-        setTimeout(captureCard, 200);
-      }
-      
-      function captureCard() {
-        html2canvas(card, {
-          backgroundColor: "#f1f5f9",
-          useCORS: true,
-          allowTaint: true,
-          scale: 3,
-          logging: false,
-          width: 350,
-          height: 500,
-          onclone: function(clonedDoc) {
-            const clonedImages = clonedDoc.querySelectorAll('img');
-            clonedImages.forEach(img => {
-              if (!img.complete) {
-                img.src = img.src;
-              }
-            });
-          }
-        }).then(canvas => {
-          // Restore form visibility
-          formSection.style.visibility = 'visible';
-          
-          // Create download link
-          const link = document.createElement('a');
-          const studentName = document.getElementById('name').value.replace(/\s+/g, '_');
-          link.download = `${studentName}_ID_Card.png`;
-          link.href = canvas.toDataURL("image/png", 1.0);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          
-          // Show success feedback
-          const downloadBtn = document.getElementById('downloadBtn');
-          const originalText = downloadBtn.innerHTML;
-          downloadBtn.innerHTML = '✅ Downloaded Successfully!';
-          setTimeout(() => {
-            downloadBtn.innerHTML = originalText;
-          }, 2000);
-        }).catch(error => {
-          // Restore form visibility on error
-          formSection.style.visibility = 'visible';
-          console.error('Canvas generation failed:', error);
-          alert('Failed to generate image. Please ensure school_logo.png is in the same folder as this HTML file.');
-        });
-      }
-    }
+   const card = document.getElementById(&quot;idCard&quot;);
+   const formSection = document.querySelector(&#39;.form-section&#39;);
 
-    // Add smooth scrolling to card when generated
-    function scrollToCard() {
-      document.getElementById('idCard').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-      });
-    }
+   // Hide form section during capture
+   formSection.style.visibility = &#39;hidden&#39;;
+
+   // Wait for all images to load before capturing
+   const images = card.querySelectorAll(&#39;img&#39;);
+   let loadedImages = 0;
+   const totalImages = images.length;
+
+   const captureAndDownload = () =&gt; {
+     setTimeout(() =&gt; {
+       html2canvas(card, {
+         backgroundColor: &quot;#f1f5f9&quot;,
+         useCORS: true,
+         allowTaint: true,
+         scale: 2, // Adjust scale as needed, but be cautious of very high values
+         logging: true, // Enable logging for debugging
+         onclone: function(clonedDoc) {
+           const clonedImages = clonedDoc.querySelectorAll(&#39;img&#39;);
+           clonedImages.forEach(img =&gt; {
+             if (!img.complete) {
+               img.src = img.src;
+             }
+           });
+         }
+       }).then(canvas =&gt; {
+         console.log(&#39;Canvas Width:&#39;, canvas.width);
+         console.log(&#39;Canvas Height:&#39;, canvas.height);
+
+         // Restore form visibility
+         formSection.style.visibility = &#39;visible&#39;;
+
+         // Create download link
+         const link = document.createElement(&#39;a&#39;);
+         const studentName = document.getElementById(&#39;name&#39;).value.replace(/\s+/g, &#39;_&#39;);
+         link.download = `${studentName}_ID_Card.png`;
+         link.href = canvas.toDataURL(&quot;image/png&quot;, 1.0);
+         document.body.appendChild(link);
+         link.click();
+         document.body.removeChild(link);
+
+         // Show success feedback
+         const downloadBtn = document.getElementById(&#39;downloadBtn&#39;);
+         const originalText = downloadBtn.innerHTML;
+         downloadBtn.innerHTML = &#39;✅ Downloaded Successfully!&#39;;
+         setTimeout(() =&gt; {
+           downloadBtn.innerHTML = originalText;
+         }, 2000);
+       }).catch(error =&gt; {
+         // Restore form visibility on error
+         formSection.style.visibility = &#39;visible&#39;;
+         console.error(&#39;Canvas generation failed:&#39;, error);
+         alert(&#39;Failed to generate image. Please ensure school_logo.png is in the same folder as this HTML file or accessible via URL.&#39;);
+       });
+     }, 200); // Small delay before capture
+   };
+
+   if (totalImages === 0) {
+     captureAndDownload();
+     return;
+   }
+
+   images.forEach((img, index) =&gt; {
+     if (img.complete &amp;&amp; img.naturalHeight !== 0) {
+       loadedImages++;
+       if (loadedImages === totalImages) {
+         captureAndDownload();
+       }
+     } else {
+       img.onload = () =&gt; {
+         loadedImages++;
+         if (loadedImages === totalImages) {
+           captureAndDownload();
+         }
+       };
+       img.onerror = () =&gt; {
+         console.warn(`Image ${index} failed to load, continuing anyway...`);
+         loadedImages++;
+         if (loadedImages === totalImages) {
+           captureAndDownload();
+         }
+       };
+     }
+   });
+
+   if (loadedImages === totalImages) {
+     captureAndDownload();
+   }
+ }
   </script>
 </body>
 </html>

@@ -309,13 +309,14 @@
     .id-card .info {
       font-size: 0.95em;
       width: 100%;
-      padding: 15px;
+      padding: 25px;
       border-radius: 10px;
-      background: #f8fafc;
+      background: rgba(248, 250, 252, 0.85);
       border: 1px solid #e2e8f0;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
       z-index: 2;
       flex-shrink: 0;
+      backdrop-filter: blur(1px);
     }
 
     .id-card .info p {
@@ -341,16 +342,17 @@
 
     .id-card .watermark-logo {
       position: absolute;
-      top: 57%;
+      top: 58%;
       left: 50%;
       width: 250px;
       height: 250px;
       transform: translate(-50%, -50%);
-      opacity: 0.08;
-      z-index: 0;
+      opacity: 0.75;
+      z-index: 1;
       pointer-events: none;
       user-select: none;
       object-fit: contain;
+      filter: grayscale(80%) brightness(1.2);
     }
 
     .success-message {
@@ -463,6 +465,9 @@
 
     <div class="card-container">
       <div class="id-card" id="idCard">
+        <!-- Watermark logo positioned first to be behind other content -->
+        <img src="school_logo.jpg" class="watermark-logo" alt="Watermark Logo">
+        
         <div class="header-row">
           <img src="school_logo.jpg" class="logo" alt="School Logo">
           <div class="school-info">
@@ -487,7 +492,7 @@
           <p><strong>Address:</strong> <span id="cAddress"></span></p>
         </div>
         <div class="footer">
-          Address: Umang School for Children with Hearing loss, Besides Health and Care Foundation, near Rajwadu Hotel, Behind Malav Talav, Jivraj Park, Ahmedabad, Gujarat 380051<br>
+          Address:  Umang School for Children with Hearing loss, Besides Health and Care Foundation, near Rajwadu Hotel, Behind Malav Talav, Jivraj Park, Ahmedabad, Gujarat 380051<br>
           Phone: +91-88660 58443<br>
           Website: https://www.umangschool.org<br>
           Email: deafvoice@umangschool.org<br>

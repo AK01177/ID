@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umang School - ID Card Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>
+      <img src="school_logo.jpg" alt="Umang School Logo" style="height: 1.2em; vertical-align: middle; margin-right: 0.3em; display: inline-block;">
+      Umang School
+    </h1>
+    <div class="school-quote" style="text-align: center;"><h5>for Children with Hearing Loss</h5></div>
+  </div>
+
+  <div class="main-container">
+    <div class="form-section">
+      <h2>📋 Student Information</h2>
+      
+      <div class="form-group">
+        <label for="name">👤 Full Name</label>
+        <input type="text" id="name" placeholder="Enter student's full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="grade">🎯 Grade/Class</label>
+        <input type="text" id="grade" placeholder="e.g., Grade 5, Class X" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">📅 Date of Birth</label>
+        <input type="date" id="dob" required>
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber">🔢 Contact Number</label>
+        <input type="text" id="contactNumber" placeholder="Enter Contact number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">🏠 Address</label>
+        <input type="text" id="address" placeholder="Enter complete address" required>
+      </div>
+
+      <div class="form-group file-input">
+        <label>📷 Student Photo</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="photo" accept="image/*">
+          <label for="photo" class="file-input-label" id="fileLabel">
+            📁 Click to upload photo (JPG, PNG)
+          </label>
+        </div>
+      </div>
+
+      <button class="generate-btn" onclick="generateCard()">
+        ✨ Generate ID Card
+      </button>
+
+      <button class="download-btn" id="downloadBtn" onclick="downloadCard()">
+        💾 Download ID Card
+      </button>
+
+      <div class="success-message" id="successMessage">
+        ✅ ID Card generated successfully!
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="id-card" id="idCard">
+        <!-- Watermark logo positioned first to be behind other content -->
+        <img src="school_logo1.jpg" class="watermark-logo" alt="Watermark Logo">
+        
+        <div class="header-row">
+          <img src="school_logo.jpg" class="logo" alt="School Logo">
+          <div class="school-info">
+            <h1 class="main-title">Umang School</h1>
+            <p class="subtitle">for children with hearing loss</p>
+          </div>
+        </div>
+        
+        <div class="photo-section">
+          <img src="deaf2.jpg" class="deaf-icon" alt="Deaf Icon">
+          <div class="photo" id="cardPhoto">
+            <div class="photo-placeholder">👤</div>
+          </div>
+          <img src="deaf.jpg" class="deaf-icon" alt="Deaf Icon">
+        </div>
+        
+        <div class="info">
+          <p><strong>Name:</strong> <span id="cName"></span></p>
+          <p><strong>Grade:</strong> <span id="cGrade"></span></p>
+          <p><strong>DOB:</strong> <span id="cDob"></span></p>
+          <p><strong>Home Contact Number:</strong> <span id="cContact"></span></p>
+          <p><strong>Address:</strong> <span id="cAddress"></span></p>
+        </div>
+        <div class="footer">
+          Address:  Umang School for Children with Hearing loss, Besides Health and Care Foundation, near Rajwadu Hotel, Behind Malav Talav, Jivraj Park, Ahmedabad, Gujarat 380051<br>
+          Phone: +91-88660 58443<br>
+          Website: https://www.umangschool.org<br>
+          Email: deafvoice@umangschool.org<br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load html2canvas and jsPDF libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

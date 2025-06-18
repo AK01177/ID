@@ -203,7 +203,7 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.1);
   overflow: hidden;
 }
-/*
+
 .id-card::before {
   content: "";
   position: absolute;
@@ -216,7 +216,7 @@ body {
   pointer-events: none;
   opacity: 0.8;
   z-index: 1;
-} */
+}
 
 .id-card .header-row {
   display: flex;

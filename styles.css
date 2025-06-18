@@ -314,7 +314,7 @@ body {
 .id-card .info {
   font-size: 0.95em;
   width: 100%;
-  padding: 15px;
+  padding: 10px 12px;
   border-radius: 10px;
   background: rgba(248, 250, 252, 0.85);
   border: 1px solid #e2e8f0;
@@ -325,7 +325,7 @@ body {
 }
 
 .id-card .info p:last-of-type {
-  font-size: 0.82em;
+  font-size: 0.75em;
   line-height: 1.3;
 }
 

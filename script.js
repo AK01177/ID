@@ -176,3 +176,43 @@ async function downloadCard() {
     downloadBtn.disabled = false;
   }
 }
+
+// --- LIVE PREVIEW FEATURE START ---
+// Show the card by default (blank)
+document.getElementById('idCard').style.display = 'flex';
+document.getElementById('downloadBtn').style.display = 'none';
+document.getElementById('successMessage').style.display = 'none';
+
+// Helper to update card fields live
+function updateCardLive() {
+  document.getElementById('cName').innerText = document.getElementById('name').value;
+  document.getElementById('cGrade').innerText = document.getElementById('grade').value;
+  document.getElementById('cDob').innerText = formatDate(document.getElementById('dob').value);
+  document.getElementById('cContact').innerText = document.getElementById('contactNumber').value;
+  document.getElementById('cAddress').innerText = document.getElementById('address').value;
+}
+
+// Attach input listeners for live update
+['name', 'grade', 'dob', 'contactNumber', 'address'].forEach(function(field) {
+  document.getElementById(field).addEventListener('input', updateCardLive);
+});
+
+// Live photo preview
+function updatePhotoLive() {
+  const photo = document.getElementById('photo').files[0];
+  if (photo) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById('cardPhoto').innerHTML = `
+        <img src="${e.target.result}" alt="Student Photo">
+      `;
+    };
+    reader.readAsDataURL(photo);
+  } else {
+    document.getElementById('cardPhoto').innerHTML = `
+      <div class="photo-placeholder">👤</div>
+    `;
+  }
+}
+document.getElementById('photo').addEventListener('change', updatePhotoLive);
+// --- LIVE PREVIEW FEATURE END ---

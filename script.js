@@ -43,7 +43,7 @@ function generateCard() {
     const reader = new FileReader();
     reader.onload = function (e) {
       document.getElementById('cardPhoto').innerHTML = `
-        <img src="${e.target.result}" alt="Student Photo">
+        <img src="${e.target.result}" alt="Student Photo" class="shadow-img">
       `;
     };
     reader.readAsDataURL(photo);
@@ -204,7 +204,7 @@ function updatePhotoLive() {
     const reader = new FileReader();
     reader.onload = function (e) {
       document.getElementById('cardPhoto').innerHTML = `
-        <img src="${e.target.result}" alt="Student Photo">
+        <img src="${e.target.result}" alt="Student Photo" class="shadow-img">
       `;
     };
     reader.readAsDataURL(photo);

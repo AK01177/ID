@@ -8,7 +8,7 @@
 }
 
 /* Add professional font import */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 /* CSS Variables for Design System */
 :root {
@@ -255,7 +255,7 @@ body {
   overflow: hidden;
   transition: var(--transition);
   transform-style: preserve-3d;
-  font-family: 'Roboto Slab', 'Merriweather', Georgia, serif;
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .id-card:hover {
@@ -446,6 +446,22 @@ body {
   display: none;
   font-weight: 500;
   box-shadow: var(--shadow-md);
+}
+
+/* Student Info Section - Premium Font and Dark Color */
+.id-card .info,
+.id-card .info p,
+.id-card .info span {
+  font-family: 'Poppins', 'Inter', Arial, sans-serif;
+  color: #181818 !important;
+  font-weight: 600;
+}
+
+/* Footer - Purple Color and Clean Font */
+.id-card .footer {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #6c3ad6 !important;
+  font-weight: 500;
 }
 
 /* Responsive Design */

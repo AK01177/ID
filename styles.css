@@ -9,6 +9,7 @@
 
 /* Add professional font import */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 /* CSS Variables for Design System */
 :root {
@@ -452,7 +453,7 @@ body {
 .id-card .info,
 .id-card .info p,
 .id-card .info span {
-  font-family: 'Poppins', 'Inter', Arial, sans-serif;
+  font-family: 'Lato', 'Inter', Arial, sans-serif;
   color: #181818 !important;
   font-weight: 600;
 }
